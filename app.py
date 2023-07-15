@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import  Api
-from resources.transactions import Transactions, Transaction
+from resources.transaction import Transactions, Transaction
 
 app = Flask(__name__)
 api = Api(app)

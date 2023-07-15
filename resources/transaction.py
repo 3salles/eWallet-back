@@ -1,4 +1,5 @@
 from flask_restful import Resource, reqparse
+from models.transaction import TransactionModel
 
 transactions = [
     {'category': 'entertainment',
@@ -77,15 +78,17 @@ class Transaction(Resource):
 
     def post(self, uid):
         data = Transaction.properties.parse_args()
-
-        new_transaction = { 'uid': uid, **data }
+        
+        transaction_object = TransactionModel(uid, **data)
+        new_transaction = transaction_object.to_json()
 
         transactions.append(new_transaction)
         return new_transaction, 200
 
     def put(self, uid):
         data = Transaction.properties.parse_args()
-        new_transaction = { 'uid': uid, **data }
+        transaction_object = TransactionModel(uid, **data)
+        new_transaction = transaction_object.to_json()
         transaction = Transaction.find_transaction(uid)
 
         if transaction:
