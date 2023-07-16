@@ -1,4 +1,4 @@
-from database import database
+from extensions.database import database
 from utils.date_utils import convert_to_python_time
 from datetime import datetime
 

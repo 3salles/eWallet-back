@@ -1,11 +1,12 @@
 from flask_restful import  Api
 from resources.transaction import Transactions, Transaction
 from flask_openapi3 import OpenAPI, Info, Tag
-from database import database
+from extensions.database import database
+import extensions.cors as cors
 from schemas.transaction import TransactionSchema, ListTransactionsSchema, AddTransactionSchema, DeleteTransactionSchema
 from schemas.error import ErrorSchema
 from logger import logger
-import cors
+
 
 # http://127.0.0.1:5000/openapi/swagger#
 
@@ -23,7 +24,6 @@ def create_app():
 
     cors.init(app)
 
-    # transactions_init(app)
 
     return app
 
@@ -54,7 +54,7 @@ def delete_transaction(uid:str):
     logger.debug(f"Transaction #'{uid}' deleted")
 
 if __name__ == '__main__':
-    import database
+    import extensions.database as database
     
     database.init(app)
     app.run(debug=True)
