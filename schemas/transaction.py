@@ -21,7 +21,7 @@ class ListTransactionsSchema(BaseModel):
 class AddTransactionSchema(BaseModel):
     uid: str = "752d013d-4a7d-48c7-993c-87f8296757c8"
     category: str = "entertainment"
-    date: Optional[str] = '2023-06-17T00:00:00'
+    date: Optional[str] = '2023-06-17'
     amount: float = 300.0
     description: str = "Hogwarts Legacy"
     institution: str = "PS Store"
