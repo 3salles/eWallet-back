@@ -1,7 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.transaction import TransactionModel
 
-
 class Transactions(Resource):
     def get(self):
         return {'transactions': [transaction.to_json() for transaction in TransactionModel.query.all()]}
@@ -13,7 +12,6 @@ class Transaction(Resource):
     properties.add_argument('amount')
     properties.add_argument('description')
     properties.add_argument('institution')
-
 
     def get(self, uid):
         transaction = TransactionModel.find_transaction(uid)
@@ -63,3 +61,4 @@ class Transaction(Resource):
             return {'message': 'Transaction deleted'}
         
         return {'message': 'Transaction not found.'}, 404
+

@@ -4,4 +4,3 @@ database = SQLAlchemy()
 
 def init(app):
     database.init_app(app)
-    
