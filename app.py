@@ -23,6 +23,7 @@ def create_app():
     api.add_resource(Transaction, '/transactions/<string:uid>')
 
     cors.init(app)
+    database.init_app(app)
 
 
     return app
