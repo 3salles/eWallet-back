@@ -3,7 +3,7 @@
   <h3 align="center">eWallet</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/static/v1?label=Lincense&message=MIT&color=0000ff " alt="License" />
+  <img src="https://img.shields.io/static/v1?label=Lincense&message=GPL&color=0000ff" alt="License" />
 </p>
 
 <p align="center">
@@ -112,9 +112,9 @@ $ mv database.py /tmp
 
 Then run the project again
 
-<!-- ## :page_facing_up: License
+## :page_facing_up: License
 
-This project uses [MIT](https://github.com/3salles/guess-kitty/blob/main/LICENSE) license. -->
+This project uses [GPL](https://github.com/3salles/eWallet-back/blob/main/LICENSE) license.
 
 ## :woman_technologist: Author
 
