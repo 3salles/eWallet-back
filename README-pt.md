@@ -33,7 +33,7 @@
 
 Esta é a API do website financeiro eWallet desenvolvido para obter nota na PUC-Rio.
 
-Link para acessar o front-end do projeto: [eWallet-front]().
+Link para acessar o front-end do projeto: [eWallet-front](https://github.com/3salles/eWallet-front).
 
 * Documentação
 
