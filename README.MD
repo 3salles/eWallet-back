@@ -33,7 +33,7 @@
 
 This is an API to eWallet a financial website developed to obtain grade at PUC-Rio.
 
-Link to access front-end project: [eWallet-front]().
+Link to access front-end project: [eWallet-front](https://github.com/3salles/eWallet-front).
 
 * Documentation
 
