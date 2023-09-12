@@ -55,7 +55,4 @@ def delete_transaction(uid:str):
     logger.debug(f"Transaction #'{uid}' deleted")
 
 if __name__ == '__main__':
-    import extensions.database as database
-    
-    database.init(app)
-    app.run(debug=True)
+    app.run( host='0.0.0.0', port=5001)
