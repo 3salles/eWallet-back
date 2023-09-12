@@ -70,7 +70,7 @@ $ cd eWallet-back
 ```
 🚨 Se você não possui o git na sua máquina, você pode instalá-lo [aqui](https://git-scm.com/downloads).
 
-## #file_cabinet Back-end
+## file_cabinet Back-end
 
 Este projeto pode ser rodado em um container do [Docker](https://www.docker.com).
 
