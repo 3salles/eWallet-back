@@ -81,6 +81,7 @@ $ docker build -t ewallet-back .
 
 $ docker run -d -p 5001:5001 ewallet-back 
 ``` 
+The application will be available on `http://localhost:5001/transactions`.
 
 ### :construction: Installing Dependencies
 
