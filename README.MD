@@ -50,6 +50,7 @@ Access this API on Heroku [ewallet/transactions](https://ewallet-42d06a204d9c.he
 * [OpenAPI](https://www.openapis.org)
 * [Sqlite](https://www.sqlite.org/index.html)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
+* [Docker](https://www.docker.com)
 
 ## :bricks: Installation
 
@@ -72,9 +73,18 @@ $ cd eWallet-back
 
 ## #file_cabinet Back-end
 
+This project can be used with [Docker](https://www.docker.com) container.
+
+In `eWallet-back` folder, run following commands:
+```bash
+$ docker build -t ewallet-back .
+
+$ docker run -d -p 5001:5001 ewallet-back 
+``` 
+
 ### :construction: Installing Dependencies
 
-In `eWallet` folder, create a virtual environment with virtualenv and activate it:
+In `eWallet-back` folder, create a virtual environment with virtualenv and activate it:
 
 ```bash
 $ virtualenv venv

@@ -50,6 +50,7 @@ Acesse esta API no Heroku [ewallet/transactions](https://ewallet-42d06a204d9c.he
 * [OpenAPI](https://www.openapis.org)
 * [Sqlite](https://www.sqlite.org/index.html)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
+* [Docker](https://www.docker.com)
 
 ## :bricks: Instalação
 
@@ -70,6 +71,18 @@ $ cd eWallet-back
 🚨 Se você não possui o git na sua máquina, você pode instalá-lo [aqui](https://git-scm.com/downloads).
 
 ## #file_cabinet Back-end
+
+Este projeto pode ser rodado em um container do [Docker](https://www.docker.com).
+
+Entre na pasta `eWallet-back` e rode os seguintes comandos:
+
+```bash
+$ docker build -t ewallet-back .
+
+$ docker run -d -p 5001:5001 ewallet-back 
+``` 
+
+A aplicação estará disponível em `http://localhost:5001/transactions`.
 
 ### :construction: Instalando Dependências
 
