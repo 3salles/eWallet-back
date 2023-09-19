@@ -37,9 +37,9 @@ Link to access front-end project: [eWallet-front](https://github.com/3salles/eWa
 
 * Documentation
 
-Access this API documentation [ewallet/docs](https://ewallet-42d06a204d9c.herokuapp.com/openapi/swagger#).
+Access this API documentation [ewallet/docs](https://ewallet-back.onrender.com/openapi/swagger#).
 
-Access this API on Heroku [ewallet/transactions](https://ewallet-42d06a204d9c.herokuapp.com/transactions).
+Access this API on onRender [ewallet/transactions](https://ewallet-back.onrender.com/transactions).
 
 
 
