@@ -6,12 +6,12 @@ class UserModel(database.Model):
 
     uid = database.Column(database.String(), primary_key=True)
     name = database.Column(database.String(100))
-    nickname = database.Column(database.String(100))
+    username = database.Column(database.String(100))
     password = database.Column(database.String(100))
 
-    def __init__(self, name, nickname, password):
+    def __init__(self, name, username, password):
         self.name = name
-        self.nickname = nickname
+        self.username = username
         self.password = password
         self.uid = str(uuid.uuid4())
     
@@ -19,7 +19,7 @@ class UserModel(database.Model):
         return {
             'uid': self.uid,
             'name': self.name,
-            'nickname': self.nickname,
+            'username': self.username,
         }
     
     @classmethod
@@ -31,8 +31,8 @@ class UserModel(database.Model):
         return None 
     
     @classmethod
-    def find_by_nickname(cls, nickname):
-        user = cls.query.filter_by(nickname=nickname).first()
+    def find_by_username(cls, username):
+        user = cls.query.filter_by(username=username).first()
         
         if user:
             return user

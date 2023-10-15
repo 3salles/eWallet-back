@@ -1,12 +1,13 @@
 from flask_restful import  Api
 from resources.transaction import Transactions, Transaction
-from resources.user import User, UserRegister
+from resources.user import User, UserRegister, UserLogin
 from flask_openapi3 import OpenAPI, Info, Tag
 from extensions.database import database
 import extensions.cors as cors
 from schemas.transaction import TransactionSchema, ListTransactionsSchema, AddTransactionSchema
 from schemas.error import ErrorSchema
 from logger import logger
+from flask_jwt_extended import JWTManager
 
 
 def create_app():
@@ -15,13 +16,19 @@ def create_app():
     
     api = Api(app)
 
+    
+
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ewallet.db'
     app.config['SQLACHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['JWT_SECRET_KEY'] = 'eWallet'
+
+    jwt = JWTManager(app)
 
     api.add_resource(Transactions, '/transactions')
     api.add_resource(Transaction, '/transactions/<string:uid>')
     api.add_resource(User, '/users/<string:uid>')
     api.add_resource(UserRegister, '/register')
+    api.add_resource(UserLogin, '/login')
 
     cors.init(app)
     database.init_app(app)

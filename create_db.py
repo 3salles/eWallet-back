@@ -6,7 +6,7 @@ cursor = connection.cursor()
 create_transactions_table = 'CREATE TABLE IF NOT EXISTS transactions (uid text PRIMARY KEY,\
 category text, date text, amount real, description text, institution text)'
 
-create_users_table = 'CREATE TABLE IF NOT EXISTS users (uid text PRIMARY KEY, name text, nickname text, password text)'
+create_users_table = 'CREATE TABLE IF NOT EXISTS users (uid text PRIMARY KEY, name text, username text, password text)'
 
 create_transaction_01 = "INSERT INTO transactions VALUES ('752d013d-4a7d-48c7-993c-87f8296757c8', 'entertainment', '2023-06-17', 300, 'Hogwarts Legacy', 'PS Store')"
 create_transaction_02 = "INSERT INTO transactions VALUES ('008b2d8f-7bc3-4241-b156-1122574635e5', 'food', '2023-06-17', 300, 'Sanduíche', 'Swbway')"
