@@ -1,7 +1,9 @@
 from flask_restful import Resource, reqparse
 from models.transaction import TransactionModel
+from flask_jwt_extended import jwt_required
 
 class Transactions(Resource):
+    @jwt_required()
     def get(self):
         return {'transactions': [transaction.to_json() for transaction in TransactionModel.query.all()]}
 
@@ -13,6 +15,7 @@ class Transaction(Resource):
     properties.add_argument('description')
     properties.add_argument('institution')
 
+    @jwt_required()
     def get(self, uid):
         transaction = TransactionModel.find_transaction(uid)
 
@@ -20,6 +23,7 @@ class Transaction(Resource):
             return transaction.to_json()
         return {'message': 'Transaction not found'}, 404
     
+    @jwt_required()
     def post(self, uid):
         if TransactionModel.find_transaction(uid):
             return {'message': "Transaction id already exists."}, 400
@@ -33,6 +37,7 @@ class Transaction(Resource):
             return {'message': 'An internal error ocurred trying to save transaction.'}, 500
         return new_transaction.to_json()
     
+    @jwt_required()
     def put(self, uid):
         data = Transaction.properties.parse_args()
         transaction_found = TransactionModel.find_transaction(uid)
@@ -50,6 +55,7 @@ class Transaction(Resource):
             return {'message: ', 'An internal error ocurred trying to edit transaction.'}, 500
         return new_transaction.to_json(), 201
 
+    @jwt_required()
     def delete(self, uid):
         transaction = TransactionModel.find_transaction(uid)
 

@@ -1,6 +1,6 @@
 from flask_restful import  Api
 from resources.transaction import Transactions, Transaction
-from resources.user import User, UserRegister, UserLogin
+from resources.user import User, UserRegister, UserLogin, UserLogout
 from flask_openapi3 import OpenAPI, Info, Tag
 from extensions.database import database
 import extensions.cors as cors
@@ -8,6 +8,8 @@ from schemas.transaction import TransactionSchema, ListTransactionsSchema, AddTr
 from schemas.error import ErrorSchema
 from logger import logger
 from flask_jwt_extended import JWTManager
+from auth.blacklist import BLACKLIST
+from flask import jsonify
 
 
 def create_app():
@@ -16,19 +18,30 @@ def create_app():
     
     api = Api(app)
 
-    
-
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ewallet.db'
     app.config['SQLACHEMY_TRACK_MODIFICATIONS'] = False
     app.config['JWT_SECRET_KEY'] = 'eWallet'
+    app.config['JWT_BLACKLIST_ENABLED'] = True
 
     jwt = JWTManager(app)
+    
+
+    @jwt.token_in_blocklist_loader
+    def is_in_blacklist(self, token):
+        return token['jti'] in BLACKLIST
+    
+    @jwt.revoked_token_loader
+    def access_token_invalid():
+        return jsonify({'message': 'You have been logged out.'}), 401
 
     api.add_resource(Transactions, '/transactions')
     api.add_resource(Transaction, '/transactions/<string:uid>')
     api.add_resource(User, '/users/<string:uid>')
     api.add_resource(UserRegister, '/register')
     api.add_resource(UserLogin, '/login')
+    api.add_resource(UserLogout, '/logout')
+
+    
 
     cors.init(app)
     database.init_app(app)
@@ -63,4 +76,5 @@ def delete_transaction(uid:str):
     logger.debug(f"Transaction #'{uid}' deleted")
 
 if __name__ == '__main__':
+    
     app.run( host='0.0.0.0', port=5001)

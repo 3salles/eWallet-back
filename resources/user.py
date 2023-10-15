@@ -1,7 +1,8 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt
 from hmac import compare_digest
+from auth.blacklist import BLACKLIST
 
 properties = reqparse.RequestParser()
 properties.add_argument('name', type=str)
@@ -16,6 +17,7 @@ class User(Resource):
             return user.to_json()
         return {'message': 'User not found'}, 404
     
+    @jwt_required()
     def delete(self, uid):
         user = UserModel.find_user(uid)
 
@@ -50,3 +52,10 @@ class UserLogin(Resource):
             access_token = create_access_token(identity=user.uid)
             return {'access_token': access_token}, 200
         return {'message': 'The username or password is incorrect'}, 401
+    
+class UserLogout(Resource):
+    @jwt_required()
+    def post(self):
+        jwt_id = get_jwt()['jti']
+        BLACKLIST.add(jwt_id)
+        return {"message": "Logged out successfuly!"}, 200
