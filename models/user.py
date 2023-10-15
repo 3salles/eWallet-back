@@ -1,11 +1,10 @@
 from extensions.database import database
-from sqlalchemy.dialects.postgresql import UUID
 import uuid
 
 class UserModel(database.Model):
     __tablename__ = 'users'
 
-    uid = database.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    uid = database.Column(database.String(), primary_key=True)
     name = database.Column(database.String(100))
     nickname = database.Column(database.String(100))
     password = database.Column(database.String(100))
@@ -14,6 +13,7 @@ class UserModel(database.Model):
         self.name = name
         self.nickname = nickname
         self.password = password
+        self.uid = str(uuid.uuid4())
     
     def to_json(self):
         return {
@@ -39,6 +39,7 @@ class UserModel(database.Model):
         return None 
     
     def save_user(self):
+        self.uid = str(uuid.UUID(self.uid))
         database.session.add(self)
         database.session.commit()
 
