@@ -39,7 +39,8 @@ class UserRegister(Resource):
         
         user = UserModel(**data)
         user.save_user()
-        return {'message': 'User created successfully'}, 201
+        access_token = create_access_token(identity=user.uid)
+        return {'access_token': access_token, 'user': {'uid' : user.uid, 'name': user.name, 'username': user.username}}, 201
 
 class UserLogin(Resource):
     @classmethod
@@ -50,7 +51,7 @@ class UserLogin(Resource):
 
         if user and compare_digest(user.password, data['password']):
             access_token = create_access_token(identity=user.uid)
-            return {'access_token': access_token}, 200
+            return {'access_token': access_token, 'user': {'uid' : user.uid, 'name': user.name, 'username': user.username}}, 200
         return {'message': 'The username or password is incorrect'}, 401
     
 class UserLogout(Resource):

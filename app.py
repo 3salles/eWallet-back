@@ -10,6 +10,7 @@ from logger import logger
 from flask_jwt_extended import JWTManager
 from auth.blacklist import BLACKLIST
 from flask import jsonify
+from datetime import timedelta
 
 
 def create_app():
@@ -22,6 +23,7 @@ def create_app():
     app.config['SQLACHEMY_TRACK_MODIFICATIONS'] = False
     app.config['JWT_SECRET_KEY'] = 'eWallet'
     app.config['JWT_BLACKLIST_ENABLED'] = True
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
 
     jwt = JWTManager(app)
     
